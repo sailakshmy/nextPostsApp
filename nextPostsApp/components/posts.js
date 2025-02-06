@@ -1,6 +1,7 @@
 "use client";
 import { togglePostLikeStatus } from "@/actions/posts";
 import { formatDate } from "@/lib/format";
+import Image from "next/image";
 import { useOptimistic } from "react";
 import LikeButton from "./like-icon";
 
@@ -8,7 +9,7 @@ function Post({ post, updatePost }) {
   return (
     <article className="post">
       <div className="post-image">
-        <img src={post.image} alt={post.title} />
+        <Image src={post.image} alt={post.title} fill />
       </div>
       <div className="post-content">
         <header>
