@@ -5,11 +5,26 @@ import Image from "next/image";
 import { useOptimistic } from "react";
 import LikeButton from "./like-icon";
 
+function imageLoader(config) {
+  console.log("Config", config);
+  const urlStart = config.src.split("upload/")?.[0];
+  const urlEnd = config.src.split("upload/")?.[1];
+  const transformations = `w_200,q_${config.quality}`;
+  return `${urlStart}upload/${transformations}/${urlEnd}`;
+}
+
 function Post({ post, updatePost }) {
   return (
     <article className="post">
       <div className="post-image">
-        <Image src={post.image} alt={post.title} fill />
+        <Image
+          loader={imageLoader}
+          src={post.image}
+          alt={post.title}
+          width={200}
+          height={150}
+          quality={50}
+        />
       </div>
       <div className="post-content">
         <header>
